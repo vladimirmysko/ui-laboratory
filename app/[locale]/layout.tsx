@@ -43,7 +43,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function LocaleLayout({ children, params }: Readonly<LocaleLayoutProps>) {
   return (
-    <html lang={params.locale}>
+    <html lang={params.locale} suppressHydrationWarning>
       <body
         className={cn(
           interDisplay.variable,
@@ -51,7 +51,15 @@ export default function LocaleLayout({ children, params }: Readonly<LocaleLayout
         )}
         style={{ textRendering: 'optimizeLegibility' }}
       >
-        <Providers locale={params.locale}>{children}</Providers>
+        <Providers
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+          locale={params.locale}
+        >
+          {children}
+        </Providers>
       </body>
     </html>
   );

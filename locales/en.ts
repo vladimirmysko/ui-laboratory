@@ -1,1 +1,3 @@
-export default {} as const;
+export default {
+  count_components: '{count} components',
+} as const;
